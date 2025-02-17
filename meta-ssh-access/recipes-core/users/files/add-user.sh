@@ -1,5 +1,5 @@
 #!/bin/sh
-USERNAME="jetsonnano"
+USERNAME="jetsonnano01"
 
 # Create user with home directory and shell
 useradd -m -s /bin/bash $USERNAME

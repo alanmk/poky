@@ -8,11 +8,11 @@ do_install:append() {
     install -m 0644 ${WORKDIR}/sshd_config ${D}${sysconfdir}/ssh/sshd_config
 
     # Ensure the SSH directory exists for the user
-    install -d -m 0700 ${D}/home/jetsonnano/.ssh
+    install -d -m 0700 ${D}/home/jetsonnano01/.ssh
 
     # Install the authorized_keys file for SSH key authentication
-    install -m 0600 ${WORKDIR}/authorized_keys ${D}/home/jetsonnano/.ssh/authorized_keys
+    install -m 0600 ${WORKDIR}/authorized_keys ${D}/home/jetsonnano01/.ssh/authorized_keys
 
     # Set the correct ownership for the SSH directory and authorized_keys file
-    chown -R 1000:1000 ${D}/home/jetsonnano/.ssh
+    chown -R 1000:1000 ${D}/home/jetsonnano01/.ssh
 }
