@@ -1,0 +1,11 @@
+[Unit]
+Description=Lightweight Kubernetes
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/k3s server --disable traefik
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

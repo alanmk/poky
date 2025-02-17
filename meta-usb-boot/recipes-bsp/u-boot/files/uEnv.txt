@@ -1,0 +1,1 @@
+bootcmd=usb start; extlinux scan dev 0; run distro_bootcmd
