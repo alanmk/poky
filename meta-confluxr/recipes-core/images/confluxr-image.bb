@@ -18,12 +18,7 @@ TNSPEC_BOOTDEV:jetson-nano-devkit-emmc = "sda1"
 IMAGE_FSTYPES = "tegraflash"
 
 # Enable systemd for service management
-DISTRO_FEATURES:append = " systemd"
 VIRTUAL-RUNTIME_init_manager = "systemd"
-
-DISTRO_FEATURES:append = " virtualization"
-DISTRO_FEATURES:append = " seccomp"
-DISTRO_FEATURES:append = " k3s"
 
 # Increase storage space in rootfs
 IMAGE_ROOTFS_EXTRA_SPACE = "5242880"
