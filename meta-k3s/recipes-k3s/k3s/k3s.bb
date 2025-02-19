@@ -1,3 +1,7 @@
+SUMMARY = "Configures k3s to run as a service"
+DESCRIPTION = "Creates a systemctl file for k3s"
+LICENSE = "MIT"
+
 do_install() {
     install -d ${D}/usr/local/bin
     install -m 0755 ${WORKDIR}/k3s ${D}/usr/local/bin/k3s
