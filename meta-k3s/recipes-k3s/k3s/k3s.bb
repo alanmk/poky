@@ -1,23 +1,38 @@
-DESCRIPTION = "Lightweight Kubernetes K3s for Jetson Nano"
-LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=4e699e76467c75ff4c9a6d17cdab39e2"
-
-SRC_URI = "https://github.com/k3s-io/k3s/releases/download/v1.27.4%2Bk3s1/k3s-arm64"
-SRC_URI += "file://k3s.service"
-
-S = "${WORKDIR}"
-
 do_install() {
     install -d ${D}/usr/local/bin
-    install -m 0755 ${WORKDIR}/k3s-arm64 ${D}/usr/local/bin/k3s
+    install -m 0755 ${WORKDIR}/k3s ${D}/usr/local/bin/k3s
 
-    # Ensure systemd service is installed
+    # Create systemd service directory
     install -d ${D}${systemd_system_unitdir}
-    install -m 0644 ${WORKDIR}/k3s.service ${D}${systemd_system_unitdir}/k3s.service
+
+    # Create k3s service file
+    cat << EOF > ${D}${systemd_system_unitdir}/k3s.service
+[Unit]
+Description=Lightweight Kubernetes
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/k3s server
+Restart=always
+User=root
+Group=root
+KillMode=process
+Delegate=yes
+LimitNOFILE=1048576
+LimitNPROC=infinity
+LimitCORE=infinity
+TasksMax=infinity
+Environment="K3S_KUBELET_ARGS=--feature-gates=DevicePlugins=true"
+
+[Install]
+WantedBy=multi-user.target
+EOF
 }
 
-FILES_${PN} += "/usr/local/bin/k3s"
-FILES_${PN} += "${systemd_system_unitdir}/k3s.service"
+FILES:${PN} += "/usr/local/bin/k3s"
+FILES:${PN} += "${systemd_system_unitdir}/k3s.service"
 
-# Enable the K3s service
-SYSTEMD_SERVICE_${PN} = "k3s.service"
+RDEPENDS:${PN} = "containerd runc docker-ce nvidia-container-runtime"
+
+SYSTEMD_SERVICE:${PN} = "k3s.service"
