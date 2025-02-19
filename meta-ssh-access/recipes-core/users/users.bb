@@ -1,5 +1,6 @@
 SUMMARY = "Add a user with a pre-hashed password"
 DESCRIPTION = "This recipe creates a user and assigns a secure hashed password"
+LICENSE = "MIT"
 
 inherit extrausers
 
