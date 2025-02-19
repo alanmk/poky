@@ -8,7 +8,7 @@ do_install() {
     install -d ${D}/etc/docker
 
     # Configure Docker to use NVIDIA runtime
-    cat <<EOF > ${D}/etc/docker/daemon.json
+    cat << EOF > ${D}/etc/docker/daemon.json
 {
     "runtimes": {
         "nvidia": {
@@ -21,7 +21,7 @@ EOF
 
     # Configure k3s containerd to recognize NVIDIA GPUs
     install -d ${D}/etc/rancher/k3s
-    cat <<EOF > ${D}/etc/rancher/k3s/registries.yaml
+    cat << EOF > ${D}/etc/rancher/k3s/registries.yaml
 mirrors:
   docker.io:
     endpoint:
@@ -33,7 +33,7 @@ EOF
 
     # Enable NVIDIA GPU devices in containerd
     install -d ${D}/etc/containerd
-    cat <<EOF > ${D}/etc/containerd/config.toml
+    cat << EOF > ${D}/etc/containerd/config.toml
 [plugins."io.containerd.grpc.v1.cri".containerd]
   default_runtime_name = "nvidia"
   [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia]
@@ -45,7 +45,7 @@ EOF
 
     # Load NVIDIA kernel modules at boot
     install -d ${D}/etc/modules-load.d
-    cat <<EOF > ${D}/etc/modules-load.d/nvidia.conf
+    cat << EOF > ${D}/etc/modules-load.d/nvidia.conf
 nvidia
 nvidia_uvm
 EOF
