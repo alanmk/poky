@@ -7,7 +7,7 @@ inherit useradd
 DEPENDS = "openssh"
 
 # Ensure OpenSSH is installed
-IMAGE_INSTALL:append = " openssh"
+IMAGE_INSTALL:append = " openssh openssh-sshd shadow sudo"
 
 # Define user creation
 USERADD_PACKAGES = "${PN}"
@@ -15,7 +15,7 @@ USERADD_PARAM:${PN} = "-m -s /bin/bash -G users,sudo jetsonnano01"
 GROUPADD_PARAM:${PN} = "--system users"
 
 # Set default password (SHA-512 hashed)
-EXTRA_USERS_PARAMS = "usermod -p '\$6\$randomsalt\$hashedpassword' jetsonnano01"
+EXTRA_USERS_PARAMS = "useradd -m -s /bin/bash -G users,sudo jetsonnano01; echo 'jetsonnano01:yocto' | chpasswd"
 
 SRC_URI += " \
     file://sshd_config \
