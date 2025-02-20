@@ -1,1 +1,2 @@
-%sudo ALL=(ALL) ALL /sbin/poweroff, /sbin/reboot, /bin/systemctl poweroff, /bin/systemctl reboot
+%sudo ALL=(ALL) ALL
+%sudo ALL=(ALL) /sbin/poweroff, /sbin/reboot, /bin/systemctl poweroff, /bin/systemctl reboot
