@@ -12,7 +12,6 @@ GROUPADD_PARAM:${PN} = "sudo"
 USERADD_PARAM:${PN} += "-G sudo jetsonnano01"
 
 do_install () {
-	install -d -m 755 ${D}${datadir}/jetsonnano01
 	chown -R jetsonnano01 ${D}${datadir}/jetsonnano01
 }
 
