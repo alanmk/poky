@@ -11,8 +11,7 @@ USERADD_PARAM:${PN} = "-u 1200 -d /home/jetsonnano01 -r -s /bin/bash -G sudo -p 
 GROUPADD_PARAM:${PN} = "sudo"
 
 do_install () {
-	install -d -m 755 ${D}${datadir}/jetsonnano01
-	chown -R jetsonnano01 ${D}${datadir}/jetsonnano01
+	chown -R jetsonnano01 ${D}/home/jetsonnano01
 }
 
 FILES:${PN} += "/home/jetsonnano01"
