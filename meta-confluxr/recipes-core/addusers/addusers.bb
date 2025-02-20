@@ -2,8 +2,6 @@ SUMMARY = "Creates a custom user with sudo access"
 DESCRIPTION = "Adds 'jetsonnano01' with a hashed password and sudo group membership"
 LICENSE = "CLOSED"
 
-EXCLUDE_FROM_WORLD = "1"
-
 inherit useradd
 
 USERADD_PACKAGES = "${PN}"
@@ -17,6 +15,4 @@ do_install () {
 
 FILES:${PN} += "/home/jetsonnano01"
 
-RDEPENDS:${PN} = "sudo bash"
-
-INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+RDEPENDS:${PN} = "sudo"
