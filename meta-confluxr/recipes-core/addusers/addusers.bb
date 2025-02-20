@@ -7,7 +7,7 @@ EXCLUDE_FROM_WORLD = "1"
 inherit useradd
 
 USERADD_PACKAGES = "${PN}"
-USERADD_PARAM:${PN} = "-u 1200 -d /home/jetsonnano01 -r -s /bin/bash -p '\$6\$5qyAHTOM.Pk2kDrz\$qmICDt2cmJJdJa3FVS0ZGVcsD0w0KXJUTSC7SreeVUvuYws.aeaWo7NPEsqbX3kS7V5l0SCn/Sl16rbpJJVZk1' jetsonnano01"
+USERADD_PARAM:${PN} = "-u 1200 -d /home/jetsonnano01 -r -s /bin/sh -p '\$6\$5qyAHTOM.Pk2kDrz\$qmICDt2cmJJdJa3FVS0ZGVcsD0w0KXJUTSC7SreeVUvuYws.aeaWo7NPEsqbX3kS7V5l0SCn/Sl16rbpJJVZk1' jetsonnano01"
 GROUPADD_PARAM:${PN} = "sudo"
 USERADD_PARAM:${PN} += "-G sudo jetsonnano01"
 
