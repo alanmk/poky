@@ -1,6 +1,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-SRC_URI:append = " file://sudoers"
+SRC_URI += "file://sudoers-custom"
 
 do_install:append() {
-    install -m 0440 ${WORKDIR}/sudoers ${D}${sysconfdir}/sudoers
+    install -d ${D}/etc/sudoers.d
+    install -m 0440 ${WORKDIR}/sudoers-custom ${D}/etc/sudoers.d/
 }
