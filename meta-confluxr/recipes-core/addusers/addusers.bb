@@ -9,10 +9,6 @@ USERADD_PARAM:${PN} = "-u 1200 -d /home/jetsonnano01 -r -s /bin/bash -p '\$6\$5q
 GROUPADD_PARAM:${PN} = "sudo"
 USERADD_PARAM:${PN} += "-G sudo jetsonnano01"
 
-do_install () {
-	chown -R jetsonnano01 ${D}${datadir}/jetsonnano01
-}
-
 FILES:${PN} += "/home/jetsonnano01"
 
 RDEPENDS:${PN} = "sudo"
